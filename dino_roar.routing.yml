@@ -1,0 +1,54 @@
+dino_roar.dino_says:
+  path: /dino/says
+  defaults:
+    _controller: Drupal\dino_roar\Controller\RoarController::roar
+  requirements:
+    _permission: 'access content'
+
+
+dino_roar.dino_says_count:
+  path: /dino/says/{count}
+  defaults:
+    _controller: Drupal\dino_roar\Controller\RoarController::generatedRoar
+  requirements:
+    _permission: 'access content'
+#    count: '^[0-9]'
+    count: '^[0-9]+'
+
+dino_roar.dino_says_count_to_someone:
+  path: /dino/says/{count}/roaring/{someone}
+  defaults:
+    _controller: Drupal\dino_roar\Controller\RoarController::generateOtherRoar
+  requirements:
+    _permission: 'access content'
+    count: '^[0-9]+'
+    someone: '^[a-zA-Z]+'
+
+dino_roar.dino_with_param_converter:
+  path: '/dino_with_param_converter/{name}'
+  defaults:
+    _controller: '\Drupal\dino_roar\Controller\RoarController::paramConverter'
+  options:
+    parameters:
+      name:
+        type: name:string
+  requirements:
+    _permission: 'access content'
+
+dino_roar.dino_check:
+  path: '/dino_check'
+  defaults:
+    _controller: '\Drupal\dino_roar\Controller\RoarController::checkDino'
+  requirements:
+    _dino_access_check: 'TRUE'
+
+dino_roar.form_api:
+  path: '/roaaar-form'
+  defaults:
+    _form:  '\Drupal\dino_roar\Form\RoarSimpleForm'
+    _title: 'This is a form for Opdracht three of Albert'
+  requirements:
+    _permission: 'administer rooooar form'
+
+#route_callbacks:
+#  - '\Drupal\dino_roar\Routing\RoooooarRoutes::routes'
